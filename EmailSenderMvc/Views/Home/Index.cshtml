@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNet.Identity
+@model EmailSenderMvc.Models.ViewModels.EmailViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="buttons-section">
+                    <div class="leftside-button" 
+                         onclick='window.location.href="@Url.Action("MailList", "Home", 
+                                                       new { userId = User.Identity.GetUserId() })"'>
+                        Mail list
+                    </div>
+                    <div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                                        <div class="leftside-button">Log off</div>
+                                    </a>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="form1">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    {
+                        <div class="validation-message">
+                            @Html.ValidationSummary()
+                            @ViewBag.Message
+                        </div>
+                        <div class="form-group">
+                            <span class="label1">From</span><br />
+                            @Html.TextBoxFor(x => x.Sender, new { @class = "textbox", @placeholder = "From" })
+                        </div>
+                        <div class="form-group">
+                            <span class="label1">To</span><br />
+                            @Html.TextBoxFor(x => x.Recipient, new { @class = "textbox", @placeholder = "To" })
+                        </div>
+                        <div class="form-group">
+                            <span class="label1">Subject</span><br />
+                            @Html.TextBoxFor(x => x.Subject, new { @class = "textbox", @placeholder = "Subject" })
+                        </div>
+                        <div class="form-group">
+                            <span class="label1">Password</span><br />
+                            @Html.PasswordFor(x => x.Password, new { @class = "textbox", @placeholder = "16-sign password" })
+                        </div>
+                        <div class="form-group">
+                            <span class="label1">Message</span><br />
+                            @Html.TextAreaFor(x => x.Body, new { @class = "rich-textbox", @placeholder = "Message" })
+                        </div>
+                        <div class="form-group">
+                            <span class="label1">Attachment</span><br />
+                            @Html.TextBoxFor(x => x.Attachment, new { @class = "textbox", @placeholder = "Message" })
+                        </div>
+                        <div class="form-group">
+                            <input class="send-button" type="submit" value="Send" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

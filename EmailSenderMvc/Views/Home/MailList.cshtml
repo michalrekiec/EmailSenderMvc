@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNet.Identity
+@model List<EmailSenderMvc.Models.Domains.Email>
+@{
+    ViewBag.Title = "MailList";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" />
+</head>
+<body>
+    <section>
+        <article class="top-panel">
+            <div class="leftside-button"
+                 onclick='window.location.href="@Url.Action("Index", "Home")"'>
+                Send Email
+            </div>
+            <div>
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div>
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                <div class="leftside-button">Log off</div>
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
+            </div>
+        </article>
+        <article class="mail-list-table">
+            <div class="table1">
+                <table width="100%">
+                    <tr>
+                        <th width="30%">Details</th>
+                        <th width="70%">Content</th>
+                    </tr>
+                    @for (var x = 0; x < Model.Count; x++)
+                    {
+                        <tr>
+                            <td>
+                                From: @Model[x].Sender<br />
+                                To: @Model[x].Recipient<br />
+                                Sent: @Model[x].CreatedDate.ToString("dd-MM-yyyy HH:mm")
+                            </td>
+                            <td>
+                                <b>@Model[x].Subject</b><br />
+                                @Model[x].Body
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </article>
+    </section>
+</body>
+</html>

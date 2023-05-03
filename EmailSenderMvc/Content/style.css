@@ -1,0 +1,119 @@
+﻿body {
+    background-image: url(../Images/royalmail.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.form1 {
+    margin-top: 100px;
+    margin-left: 20px;
+}
+
+.label1 {
+    color: darkgreen;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.textbox {
+    width: 380px;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.rich-textbox {
+    width: 380px;
+    height: 150px;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.send-button {
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+    background-color: rgba(0, 255, 0, 0.5);
+    transition: background-color 1s;
+    display: block;
+}
+
+.send-button:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    transition: background-color 1s;
+}
+
+.send-button:active {
+    background-color: rgba(0, 0, 255, 0.5);
+    transition: background-color 1s;
+}
+
+.validation-message {
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    color: red;
+}
+
+.leftside-button {;
+    font-size: 20px;
+    padding: 10px 30px;
+    height: 50px;
+    background-color: blue;
+    display: block;
+    border-radius: 20px;
+    color: white !important;
+}
+
+.leftside-button:hover {
+    background-color: mediumblue;
+    color: white !important;
+}
+
+.buttons-section {
+    margin-top: 50px;
+    margin-left: 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.top-panel {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 60px;
+    margin-top: 20px;
+}
+
+.mail-list-table {
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.table1 {
+    font-size: 20px;
+    margin-top: 30px;
+    width: auto;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px 0;
+}
+
+th, td {
+    border: 1px solid;
+}
+
+th {
+    font-size: 20px;
+}
+
+td {
+    font-size: 15px;
+}
